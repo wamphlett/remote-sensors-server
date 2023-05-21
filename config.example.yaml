@@ -1,0 +1,31 @@
+server:
+  port: 8080
+manager:
+  fields:
+    metrics:
+      # cpu metrics
+      - cpu_usage
+      - cpu_temp
+      - cpu_clock
+      # gpu metrics
+      - gpu_usage
+      - gpu_temp
+      - gpu_clock
+      # game metrics
+      - fps
+    metadata:
+      - theme
+
+consumers:
+  mqtt:
+    brokerHost: 
+    brokerPort: 1883
+    topics:
+      EXAMPLE/{DEVICE}/TOPIC:
+        metrics:
+          "cpu temperature.last": "cpu_temp"
+          "cpu usage.last": "cpu_usage"
+          "fps.last": "fps"
+        metadata:
+          "theme": "theme"
+        
